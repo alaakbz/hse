@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRODERMA HSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f7fb;--card:#fff;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;
+  --brand:#2563eb;--brand2:#0f172a;--warn:#f59e0b;--ok:#10b981;--bad:#ef4444;--soft:#eff6ff;color-scheme:light
+}
+[data-theme=dark]{
+  --bg:#0b1120;--card:#111827;--ink:#e5e7eb;--mut:#9ca3af;--line:#1f2937;
+  --brand:#60a5fa;--brand2:#030712;--soft:#1e293b;color-scheme:dark
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+[dir=rtl] body,[dir=rtl] button,[dir=rtl] input,[dir=rtl] select,[dir=rtl] textarea{font-family:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
+.top{background:var(--brand2);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 4vw;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:42px;width:auto;filter:brightness(0) invert(1);opacity:0.95}
+.logo small{font-weight:400;opacity:.75;border-inline-start:1px solid #fff5;padding-inline-start:10px;font-size:14px}
+.tools{display:flex;gap:8px;align-items:center}
+.chip{background:#ffffff1a;border:1px solid #ffffff33;color:#fff;border-radius:999px;padding:6px 14px;font-size:14px}
+.chip:hover{background:#ffffff30}
+main{max-width:1280px;margin:auto;padding:28px 4vw 60px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;margin-bottom:20px}
+.streak{background:var(--brand2);color:#fff;border-radius:18px;padding:28px 32px;position:relative;overflow:hidden}
+.streak::after{content:"";position:absolute;inset-inline-end:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;border:26px solid #ffffff10}
+.streak .n{font-size:clamp(72px,12vw,120px);font-weight:700;line-height:1;color:#ffd8a8;font-variant-numeric:tabular-nums}
+.streak p{opacity:.85;max-width:34ch}
+.streak h1{font-size:20px;font-weight:600;margin-bottom:6px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-inline-start:5px solid var(--c)}
+.kpi b{display:block;font-size:34px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi span{font-size:14px;color:var(--mut)}
+.bar{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:22px 0 16px}
+.bar label{display:grid;gap:4px;font-size:13px;color:var(--mut)}
+select,input,textarea{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-height:42px;width:100%}
+.btn{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-weight:600;min-height:42px}
+[data-theme=dark] .btn{color:#0b1120}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:hover{filter:brightness(1.1)}
+.sp{flex:1}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:14px;margin-bottom:22px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.panel h2{font-size:15px;font-weight:600;margin-bottom:12px}
+.legend{display:grid;gap:4px;margin-top:10px;font-size:13px}
+.legend div{display:flex;align-items:center;gap:8px}
+.legend i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.legend em{margin-inline-start:auto;font-style:normal;font-weight:600}
+svg text{fill:var(--mut);font-size:11px;font-family:inherit}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:16px}
+.tab{background:none;border:0;padding:10px 14px;border-radius:8px 8px 0 0;color:var(--mut);font-weight:500}
+.tab[aria-selected=true]{background:var(--brand);color:#fff}
+[data-theme=dark] .tab[aria-selected=true]{color:#0b1120}
+.tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--soft);text-align:start;padding:12px 14px;font-weight:600;white-space:nowrap}
+td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+td small{display:block;color:var(--mut)}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;background:var(--soft)}
+.pill.Critique{background:#ef444422;color:var(--bad)}
+.pill.Haute{background:#f59e0b22;color:var(--warn)}
+.late{color:var(--bad);font-weight:600}
+.empty{padding:40px;text-align:center;color:var(--mut)}
+/* Nouveau : style du select inline pour l'état */
+.status-select{
+  min-height:34px;
+  padding:4px 8px;
+  font-size:13px;
+  font-weight:600;
+  border-radius:8px;
+  width:auto;
+  min-width:120px;
+  cursor:pointer;
+  background:var(--soft);
+  border:1px solid var(--line);
+}
+/* Nouveau : bouton d'édition compact */
+.icon-btn{
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:6px 10px;
+  font-size:16px;
+  line-height:1;
+  color:var(--mut);
+  transition:all .15s;
+}
+.icon-btn:hover{background:var(--soft);color:var(--brand);border-color:var(--brand)}
+dialog{border:0;border-radius:16px;padding:0;width:min(640px,94vw);background:var(--card);color:var(--ink);box-shadow:0 20px 60px #0007}
+dialog::backdrop{background:#0009}
+dialog form{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-height:85vh;overflow-y:auto}
+dialog h3{grid-column:1/-1;font-size:18px}
+dialog label{display:grid;gap:4px;font-size:13px;color:var(--mut)}
+dialog .w{grid-column:1/-1}
+dialog .act{grid-column:1/-1;display:flex;gap:10px;justify-content:flex-end}
+.toast{position:fixed;bottom:22px;inset-inline-start:50%;transform:translateX(-50%);background:var(--ok);color:#fff;padding:10px 20px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .25s}
+.toast.on{opacity:1}
+.note{margin-top:18px;font-size:13px;color:var(--mut)}
+@media(max-width:860px){.hero,.grid3{grid-template-columns:1fr}dialog form{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo">
+    <img src="img/logo.png" alt="PRODERMA Logo">
+    <small data-i="app"></small>
+  </div>
+  <div class="tools">
+    <button class="chip" id="langBtn" aria-label="Langue"></button>
+    <button class="chip" id="themeBtn" aria-label="Thème"></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="streak">
+      <h1 data-i="streakT"></h1>
+      <div class="n" id="streak">0</div>
+      <p data-i="streakP"></p>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <div class="bar">
+    <label><span data-i="site"></span>
+      <select id="siteSel"></select></label>
+    <div class="sp"></div>
+    <button class="btn ghost" id="csvBtn" data-i="csv"></button>
+    <button class="btn" id="newBtn" data-i="newF"></button>
+  </div>
+
+  <section class="grid3">
+    <div class="panel"><h2 data-i="cType"></h2><div id="donut"></div><div class="legend" id="legend"></div></div>
+    <div class="panel"><h2 data-i="cSite"></h2><div id="sites"></div></div>
+    <div class="panel"><h2 data-i="cMonth"></h2><div id="months"></div></div>
+  </section>
+
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="bar" style="margin-top:0">
+    <label style="min-width:240px"><span data-i="search"></span><input id="q" type="search"></label>
+    <label><span data-i="state"></span><select id="stSel"></select></label>
+  </div>
+  <div class="tablewrap" id="tbl"></div>
+  <p class="note" data-i="demo"></p>
+</main>
+
+<dialog id="dlg">
+  <form method="dialog" id="frm">
+    <h3 data-i="newF" id="dlgTitle"></h3>
+    <label class="w"><span data-i="fTitle"></span><input name="title" required maxlength="120"></label>
+    <label><span data-i="fMod"></span><select name="module" id="fMod"></select></label>
+    <label><span data-i="site"></span><select name="site" id="fSite"></select></label>
+    <label><span data-i="fOwner"></span><input name="owner" required maxlength="60"></label>
+    <label><span data-i="fDue"></span><input name="due" type="date" required></label>
+    <label><span data-i="fPrio"></span><select name="priority"><option>Normale</option><option>Haute</option><option>Critique</option></select></label>
+    <label><span data-i="state"></span><select name="status"><option>À traiter</option><option>En cours</option><option>Clôturé</option></select></label>
+    <label class="w"><span data-i="fDet"></span><textarea name="details" rows="3"></textarea></label>
+    
+    <label><span data-i="fHeure"></span><input name="heure" type="time" value="08:00"></label>
+    <label><span data-i="fPoste"></span><input name="poste" maxlength="60"></label>
+    <label><span data-i="fEquip"></span><input name="equip" maxlength="80"></label>
+    <label><span data-i="fPartie"></span><input name="partie" maxlength="60"></label>
+    <label><span data-i="fNature"></span><input name="nature" maxlength="120"></label>
+    <label><span data-i="fArret"></span><select name="arret"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>
+    <label><span data-i="fDuree"></span><input name="duree" type="number" min="0" value="0"></label>
+
+    <div class="act"><button type="button" class="btn ghost" id="cancel" data-i="cancel"></button><button class="btn" data-i="save"></button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const MODS=["Incidents","Inspections","Protections","Secourisme","Environnement","Risques"];
+const SITES=["Siège · Sidi Bel Abbès","Annexe · Sidi Ali Boussidi","CMV · Sidi Daho","PDV · Medina Center","PDV · Casa / Cash Beauty","PDV · AZ Mall Oran"];
+const SITE_AR=["المقر · سيدي بلعباس","الملحقة · سيدي علي بوسيدي","CMV · سيدي داهو","نقطة بيع · مدينة سنتر","نقطة بيع · كازا","نقطة بيع · AZ مول وهران"];
+const MOD_AR={Incidents:"الحوادث",Inspections:"الفحوصات",Protections:"وسائل الحماية",Secourisme:"الإسعافات",Environnement:"البيئة",Risques:"المخاطر"};
+const ST_AR={"À traiter":"للمعالجة","En cours":"قيد التنفيذ","Clôturé":"مغلق"};
+const PR_AR={Normale:"عادية",Haute:"عالية",Critique:"حرجة"};
+const T={
+fr:{app:"Suivi HSE · Pilote",streakT:"Jours sans accident avec arrêt",streakP:"Depuis le dernier accident déclaré. Chaque fiche traitée à temps protège ce compteur.",site:"Périmètre",all:"Tous les sites",csv:"Exporter CSV",newF:"Nouvelle fiche",editF:"Modifier la fiche",cType:"Fiches par module",cSite:"Fiches par site",cMonth:"Incidents sur 6 mois",search:"Rechercher",state:"État",allSt:"Tous les états",actions:"Actions",
+k1:"Fiches ouvertes",k2:"Échéances dépassées",k3:"Taux de clôture",k4:"Stocks sous le seuil",overview:"Tout",cols:["Fiche","Site","Responsable","Échéance","Priorité","État",""],none:"Aucune fiche pour ces critères.",
+fTitle:"Intitulé",fMod:"Module",fOwner:"Responsable du suivi",fDue:"Échéance",fPrio:"Priorité",fDet:"Constat / détails",cancel:"Annuler",save:"Enregistrer la fiche",saved:"Fiche enregistrée",updated:"Fiche mise à jour",demo:"Données de démonstration. Le choix des protections et les consignes de secours restent à valider par HSE.",dark:"Mode sombre",light:"Mode clair",lang:"العربية",
+fHeure:"Heure de l'accident",fPoste:"Poste de l'opérateur",fEquip:"Équipement concerné",fPartie:"Partie du corps touchée",fNature:"Nature de la blessure",fArret:"Arrêt de travail ?",fDuree:"Durée de l'arrêt (jours)"},
+ar:{app:"متابعة HSE · نسخة تجريبية",streakT:"أيام بدون حادث مع توقف عن العمل",streakP:"منذ آخر حادث تم التصريح به. كل بطاقة تُعالج في وقتها تحمي هذا العداد.",site:"النطاق",all:"كل المواقع",csv:"تصدير CSV",newF:"بطاقة جديدة",editF:"تعديل البطاقة",cType:"البطاقات حسب القسم",cSite:"البطاقات حسب الموقع",cMonth:"الحوادث خلال 6 أشهر",search:"بحث",state:"الحالة",allSt:"كل الحالات",actions:"إجراءات",
+k1:"بطاقات مفتوحة",k2:"آجال متأخرة",k3:"نسبة الإغلاق",k4:"مخزون تحت الحد الأدنى",overview:"الكل",cols:["البطاقة","الموقع","المسؤول","الأجل","الأولوية","الحالة",""],none:"لا توجد بطاقات بهذه المعايير.",
+fTitle:"العنوان",fMod:"القسم",fOwner:"مسؤول المتابعة",fDue:"الأجل",fPrio:"الأولوية",fDet:"المعاينة / التفاصيل",cancel:"إلغاء",save:"حفظ البطاقة",saved:"تم حفظ البطاقة",updated:"تم تحديث البطاقة",demo:"بيانات للعرض فقط. اختيار وسائل الحماية وتعليمات الإسعاف تبقى بحاجة لمصادقة مسؤول HSE.",dark:"الوضع الليلي",light:"الوضع النهاري",lang:"Français",
+fHeure:"ساعة الحادث",fPoste:"منصب العامل",fEquip:"الآلة المعنية",fPartie:"الجزء المصاب من الجسم",fNature:"طبيعة الإصابة",fArret:"توقف عن العمل؟",fDuree:"مدة التوقف (أيام)"}};
+const d=n=>{const x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+const seed=[
+["Incidents","Sol glissant à l'entrée de l'atelier",0,"Karim B.",-3,"Haute","À traiter",d(-20)],
+["Incidents","Presque-accident · chariot / piéton",1,"Samir A.",4,"Critique","En cours",d(-12)],
+["Incidents","Déversement de solvant · zone mélange",0,"Nadia H.",-6,"Critique","En cours",d(-40)],
+["Incidents","Départ de feu maîtrisé · stockage carton",2,"Adel Y.",-1,"Haute","Clôturé",d(-70)],
+["Incidents","Chute d'un fût vide",1,"Samir A.",10,"Normale","Clôturé",d(-95)],
+["Inspections","Contrôle extincteurs · atelier",0,"Adel Y.",5,"Normale","À traiter",d(-3)],
+["Inspections","Carters malaxeur à vérifier",0,"Karim B.",2,"Haute","En cours",d(-5)],
+["Inspections","Issues de secours · CMV",2,"Nadia H.",-2,"Haute","À traiter",d(-8)],
+["Protections","Gants nitrile · stock bas (12/40)",0,"Karim B.",3,"Haute","À traiter",d(-4)],
+["Protections","Lunettes étanches · dotation PDV",3,"Samir A.",12,"Normale","En cours",d(-9)],
+["Secourisme","Trousse de secours · Medina Center",3,"Nadia H.",-4,"Haute","À traiter",d(-15)],
+["Secourisme","Recyclage secouristes · siège",0,"Adel Y.",20,"Normale","En cours",d(-2)],
+["Environnement","Collecte déchets chimiques",1,"Nadia H.",7,"Normale","En cours",d(-6)],
+["Risques","Évaluation poste · pesée des poudres",0,"Adel Y.",6,"Haute","En cours",d(-1)],
+["Incidents","Coupure légère · conditionnement",4,"Samir A.",-9,"Normale","Clôturé",d(-130)],
+["Incidents","Presque-accident · palette instable",5,"Karim B.",-12,"Haute","Clôturé",d(-150)]
+].map((r,i)=>({id:i+1,module:r[0],title:r[1],site:SITES[r[2]],owner:r[3],due:d(r[4]),priority:r[5],status:r[6],date:r[7],details:""}));
+
+let st={lang:"fr",theme:"light",site:"all",tab:"all",status:"all",q:"",rows:seed};
+let editingId = null; // null = création, sinon id de la fiche à éditer
+
+try{const s=JSON.parse(localStorage.getItem("hse-demo")||"null");if(s){st.lang=s.lang||"fr";st.theme=s.theme||"light";if(s.rows)st.rows=s.rows}}catch(e){}
+const save=()=>{try{localStorage.setItem("hse-demo",JSON.stringify({lang:st.lang,theme:st.theme,rows:st.rows}))}catch(e){}};
+const t=k=>T[st.lang][k];
+const siteName=s=>st.lang==="ar"?SITE_AR[SITES.indexOf(s)]||s:s;
+const modName=m=>st.lang==="ar"?MOD_AR[m]:m;
+const today=()=>new Date().toISOString().slice(0,10);
+const COLORS=["#ef4444","#f59e0b","#10b981","#3b82f6","#8b5cf6","#eab308"];
+
+function scope(){return st.rows.filter(r=>st.site==="all"||r.site===st.site)}
+
+function applyStatic(){
+  document.documentElement.lang=st.lang;document.documentElement.dir=st.lang==="ar"?"rtl":"ltr";
+  document.documentElement.dataset.theme=st.theme;
+  document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));
+  $("#langBtn").textContent=t("lang");$("#themeBtn").textContent=st.theme==="dark"?t("light"):t("dark");
+  $("#q").placeholder="…";
+  const ss=$("#siteSel");ss.innerHTML=`<option value="all">${t("all")}</option>`+SITES.map(s=>`<option value="${s}">${siteName(s)}</option>`).join("");ss.value=st.site;
+  $("#fSite").innerHTML=SITES.map(s=>`<option value="${s}">${siteName(s)}</option>`).join("");
+  $("#fMod").innerHTML=MODS.map(m=>`<option value="${m}">${modName(m)}</option>`).join("");
+  const sts=["À traiter","En cours","Clôturé"];
+  $("#stSel").innerHTML=`<option value="all">${t("allSt")}</option>`+sts.map(s=>`<option value="${s}">${st.lang==="ar"?ST_AR[s]:s}</option>`).join("");$("#stSel").value=st.status;
+  $("#tabs").innerHTML=["all",...MODS].map(m=>`<button class="tab" role="tab" data-t="${m}" aria-selected="${st.tab===m}">${m==="all"?t("overview"):modName(m)}</button>`).join("");
+}
+
+function countUp(el,to,suffix=""){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=to+suffix;return}
+  const t0=performance.now();(function f(n){const p=Math.min(1,(n-t0)/700);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suffix;if(p<1)requestAnimationFrame(f)})(t0);
+}
+
+let first=true;
+function renderKpis(){
+  const s=scope(),open=s.filter(r=>r.status!=="Clôturé"),late=open.filter(r=>r.due<today());
+  const rate=s.length?Math.round(100*(s.length-open.length)/s.length):0;
+  const low=s.filter(r=>r.module==="Protections"&&r.status!=="Clôturé").length+s.filter(r=>/trousse/i.test(r.title)&&r.status!=="Clôturé").length;
+  const data=[[open.length,t("k1"),"#3b82f6",""],[late.length,t("k2"),"#ef4444",""],[rate,t("k3"),"#10b981","%"],[low,t("k4"),"#f59e0b",""]];
+  $("#kpis").innerHTML=data.map((k,i)=>`<div class="kpi" style="--c:${k[2]}"><b data-n="${k[0]}" data-s="${k[3]}">${k[0]}${k[3]}</b><span>${k[1]}</span></div>`).join("");
+  const acc=s.filter(r=>r.module==="Incidents"&&/accident|chute|coupure/i.test(r.title)&&!/presque/i.test(r.title)).map(r=>r.date).sort().pop();
+  const days=acc?Math.max(0,Math.floor((new Date(today())-new Date(acc))/864e5)):0;
+  if(first){document.querySelectorAll(".kpi b").forEach(b=>countUp(b,+b.dataset.n,b.dataset.s));countUp($("#streak"),days);first=false}
+  else{$("#streak").textContent=days}
+}
+
+function renderCharts(){
+  const s=scope();
+  const counts=MODS.map(m=>s.filter(r=>r.module===m).length),tot=counts.reduce((a,b)=>a+b,0)||1;
+  let a0=-Math.PI/2,paths="";
+  counts.forEach((c,i)=>{if(!c)return;const a1=a0+2*Math.PI*c/tot,big=a1-a0>Math.PI?1:0,R=70,r=44;
+    const p=(R,a)=>[100+R*Math.cos(a),100+R*Math.sin(a)];const [x0,y0]=p(R,a0),[x1,y1]=p(R,a1-.02),[x2,y2]=p(r,a1-.02),[x3,y3]=p(r,a0);
+    paths+=`<path d="M${x0},${y0}A${R},${R} 0 ${big} 1 ${x1},${y1}L${x2},${y2}A${r},${r} 0 ${big} 0 ${x3},${y3}Z" fill="${COLORS[i]}"/>`;a0=a1});
+  $("#donut").innerHTML=`<svg viewBox="0 0 200 200" width="170" style="display:block;margin:auto" role="img" aria-label="${t("cType")}">${paths}<text x="100" y="106" text-anchor="middle" style="font-size:26px;font-weight:600;fill:var(--ink)">${s.length}</text></svg>`;
+  $("#legend").innerHTML=MODS.map((m,i)=>`<div style="--c:${COLORS[i]}"><i></i>${modName(m)}<em>${counts[i]}</em></div>`).join("");
+  const sc=SITES.map(x=>st.rows.filter(r=>r.site===x).length),mx=Math.max(...sc,1);
+  $("#sites").innerHTML=`<svg viewBox="0 0 300 ${SITES.length*34}" width="100%">`+SITES.map((x,i)=>{const w=sc[i]/mx*150,sel=st.site==="all"||st.site===x;
+    return `<text x="${st.lang==="ar"?300:0}" y="${i*34+12}" text-anchor="${st.lang==="ar"?"end":"start"}">${siteName(x).slice(0,26)}</text><rect x="${st.lang==="ar"?300-w:0}" y="${i*34+17}" width="${w}" height="10" rx="5" fill="var(--brand)" opacity="${sel?1:.3}"/><text x="${st.lang==="ar"?300-w-8:w+8}" y="${i*34+26}" text-anchor="${st.lang==="ar"?"end":"start"}" style="fill:var(--ink)">${sc[i]}</text>`}).join("")+`</svg>`;
+  const now=new Date(),ms=[];for(let i=5;i>=0;i--){const m=new Date(now.getFullYear(),now.getMonth()-i,1);ms.push(m)}
+  const vals=ms.map(m=>s.filter(r=>r.module==="Incidents"&&new Date(r.date).getMonth()===m.getMonth()&&new Date(r.date).getFullYear()===m.getFullYear()).length);
+  const vm=Math.max(...vals,2),pts=vals.map((v,i)=>[30+i*50,110-v/vm*90]);
+  $("#months").innerHTML=`<svg viewBox="0 0 290 140" width="100%"><path d="M${pts.map(p=>p.join(",")).join("L")}L${pts[5][0]},110L${pts[0][0]},110Z" fill="var(--brand)" opacity=".12"/><polyline points="${pts.map(p=>p.join(",")).join(" ")}" fill="none" stroke="var(--brand)" stroke-width="3" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="var(--warn)"/><text x="${p[0]}" y="${p[1]-9}" text-anchor="middle" style="fill:var(--ink)">${vals[i]}</text><text x="${p[0]}" y="128" text-anchor="middle">${ms[i].toLocaleDateString(st.lang==="ar"?"ar-DZ":"fr-DZ",{month:"short"})}</text>`).join("")}</svg>`;
+}
+
+function visible(){
+  const q=st.q.toLowerCase();
+  return scope().filter(r=>(st.tab==="all"||r.module===st.tab)&&(st.status==="all"||r.status===st.status)&&[r.title,r.owner,r.module].join(" ").toLowerCase().includes(q)).sort((a,b)=>a.due.localeCompare(b.due));
+}
+
+function renderTable(){
+  const v=visible();
+  if(!v.length){$("#tbl").innerHTML=`<p class="empty">${t("none")}</p>`;return}
+  const statusOptions = ["À traiter","En cours","Clôturé"];
+  $("#tbl").innerHTML=`<table><thead><tr>${t("cols").map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>`+v.map(r=>{
+    const late=r.due<today()&&r.status!=="Clôturé";
+    // Select inline pour changer l'état
+    const statusSelect = `<select class="status-select" data-id="${r.id}" onchange="updateStatus(${r.id}, this.value)">
+      ${statusOptions.map(s => `<option value="${s}" ${r.status===s?'selected':''}>${st.lang==="ar"?ST_AR[s]:s}</option>`).join("")}
+    </select>`;
+    return `<tr>
+      <td><b>${esc(r.title)}</b><small>${modName(r.module)}</small></td>
+      <td>${siteName(r.site)}</td>
+      <td>${esc(r.owner)}</td>
+      <td class="${late?"late":""}">${new Date(r.due+"T12:00").toLocaleDateString(st.lang==="ar"?"ar-DZ":"fr-DZ")}</td>
+      <td><span class="pill ${r.priority}">${st.lang==="ar"?PR_AR[r.priority]:r.priority}</span></td>
+      <td>${statusSelect}</td>
+      <td><button class="icon-btn" onclick="editFiche(${r.id})" title="${t("editF")}">✏️</button></td>
+    </tr>`;
+  }).join("")+`</tbody></table>`;
+}
+
+// === NOUVELLES FONCTIONS ===
+function updateStatus(id, newStatus){
+  const fiche = st.rows.find(r => r.id === id);
+  if(fiche){ fiche.status = newStatus; save(); render(); toast(t("updated")); }
+}
+
+function editFiche(id){
+  const fiche = st.rows.find(r => r.id === id);
+  if(!fiche) return;
+  editingId = id;
+  const form = $("#frm");
+  form.reset();
+  // Remplir les champs
+  form.title.value = fiche.title || "";
+  form.module.value = fiche.module || MODS[0];
+  form.site.value = fiche.site || SITES[0];
+  form.owner.value = fiche.owner || "";
+  form.due.value = fiche.due || d(7);
+  form.priority.value = fiche.priority || "Normale";
+  form.status.value = fiche.status || "À traiter";
+  form.details.value = fiche.details || "";
+  form.heure.value = fiche.heure || "08:00";
+  form.poste.value = fiche.poste || "";
+  form.equip.value = fiche.equip || "";
+  form.partie.value = fiche.partie || "";
+  form.nature.value = fiche.nature || "";
+  form.arret.value = fiche.arret || "Non";
+  form.duree.value = fiche.duree || 0;
+  // Titre du dialogue
+  $("#dlgTitle").textContent = t("editF");
+  $("#dlg").showModal();
+}
+
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function render(){applyStatic();renderKpis();renderCharts();renderTable()}
+function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),2200)}
+
+function generateReport(data){
+  const reportWindow = window.open('', '_blank');
+  reportWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+      <meta charset="UTF-8">
+      <title>Rapport d'accident - ${data.title}</title>
+      <style>
+        body { font-family: 'Arial', sans-serif; font-size: 12px; line-height: 1.5; color: #000; padding: 40px; max-width: 800px; margin: auto; }
+        .header { text-align: right; font-weight: bold; margin-bottom: 20px; }
+        h1 { text-align: center; font-size: 16px; text-decoration: underline; margin-bottom: 30px; text-transform: uppercase; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .info-item { border-bottom: 1px solid #ccc; padding-bottom: 2px; }
+        .info-item strong { display: inline-block; width: 140px; }
+        .section-title { font-weight: bold; text-decoration: underline; margin-top: 20px; margin-bottom: 8px; }
+        .box { border: 1px solid #000; padding: 10px; min-height: 60px; margin-bottom: 15px; }
+        .signature { margin-top: 50px; text-align: right; font-weight: bold; }
+        @media print { body { padding: 0; } .no-print { display: none; } }
+      </style>
+    </head>
+    <body>
+      <div class="header">HSE.FOR.07</div>
+      <h1>Rapport d'accident de travail</h1>
+      
+      <div class="info-grid">
+        <div class="info-item"><strong>Date de l'accident :</strong> ${data.date}</div>
+        <div class="info-item"><strong>Heure :</strong> ${data.heure || '-'}</div>
+        <div class="info-item"><strong>Lieu :</strong> ${data.site}</div>
+        <div class="info-item"><strong>Opérateur concerné :</strong> ${data.owner}</div>
+        <div class="info-item"><strong>Poste :</strong> ${data.poste || '-'}</div>
+        <div class="info-item"><strong>Équipement concerné :</strong> ${data.equip || '-'}</div>
+      </div>
+
+      <div class="section-title">1. Objet :</div>
+      <div class="box">
+        Le présent rapport a pour objet de consigner l'accident de travail survenu au niveau de ${data.site} lors de l'utilisation de ${data.equip || 'l\'équipement concerné'}.
+      </div>
+
+      <div class="section-title">2. Circonstances de l'accident :</div>
+      <div class="box">
+        ${data.details || 'Non renseigné.'}
+      </div>
+
+      <div class="section-title">3. Blessure constatée :</div>
+      <div class="box">
+        <ul>
+          <li><strong>Partie du corps touchée :</strong> ${data.partie || '-'}</li>
+          <li><strong>Nature de la blessure :</strong> ${data.nature || '-'}</li>
+        </ul>
+      </div>
+
+      <div class="section-title">4. Prise en charge :</div>
+      <div class="box">
+        Suite à l'accident, l'opérateur a été pris en charge pour recevoir les soins médicaux nécessaires.<br>
+        <strong>Arrêt de travail :</strong> ${data.arret || 'Non'}<br>
+        <strong>Durée de l'arrêt :</strong> ${data.duree ? data.duree + ' jour(s)' : '0 jour'}
+      </div>
+
+      <div class="section-title">5. Conclusion :</div>
+      <div class="box">
+        L'accident de travail est survenu lors d'une opération au niveau de ${data.site}. L'opérateur a subi une ${data.nature || 'blessure'} à ${data.partie || 'une partie du corps'}.
+      </div>
+
+      <div class="signature">
+        Adel Naceur<br>Responsable HSE
+      </div>
+
+      <div class="no-print" style="text-align:center; margin-top:40px;">
+        <button onclick="window.print()" style="padding:10px 20px; font-size:16px; cursor:pointer;">Imprimer / Enregistrer en PDF</button>
+      </div>
+    </body>
+    </html>
+  `);
+  reportWindow.document.close();
+}
+
+$("#langBtn").onclick=()=>{st.lang=st.lang==="fr"?"ar":"fr";save();render()};
+$("#themeBtn").onclick=()=>{st.theme=st.theme==="dark"?"light":"dark";save();render()};
+$("#siteSel").onchange=e=>{st.site=e.target.value;render()};
+$("#stSel").onchange=e=>{st.status=e.target.value;renderTable()};
+$("#q").oninput=e=>{st.q=e.target.value;renderTable()};
+$("#tabs").onclick=e=>{const b=e.target.closest("[data-t]");if(b){st.tab=b.dataset.t;applyStatic();renderTable()}};
+
+$("#newBtn").onclick=()=>{
+  editingId = null;
+  $("#frm").reset();
+  $("#frm").due.value=d(7);
+  $("#dlgTitle").textContent = t("newF");
+  $("#dlg").showModal();
+};
+
+$("#cancel").onclick=()=>{$("#dlg").close();editingId=null;};
+
+$("#frm").onsubmit=e=>{
+  e.preventDefault();
+  const f=new FormData(e.target);
+  const data = {
+    module:f.get("module"),
+    title:f.get("title"),
+    site:f.get("site"),
+    owner:f.get("owner"),
+    due:f.get("due"),
+    priority:f.get("priority"),
+    status:f.get("status"),
+    details:f.get("details"),
+    heure:f.get("heure"),
+    poste:f.get("poste"),
+    equip:f.get("equip"),
+    partie:f.get("partie"),
+    nature:f.get("nature"),
+    arret:f.get("arret"),
+    duree:f.get("duree")
+  };
+  
+  if(editingId !== null){
+    // Mode édition : on met à jour la fiche existante
+    const idx = st.rows.findIndex(r => r.id === editingId);
+    if(idx !== -1){
+      st.rows[idx] = {...st.rows[idx], ...data};
+      save();
+      render();
+      toast(t("updated"));
+    }
+  } else {
+    // Mode création : nouvelle fiche + génération du rapport
+    const newFiche = {id:Date.now(), ...data, date:today()};
+    st.rows.unshift(newFiche);
+    save();
+    render();
+    toast(t("saved"));
+    generateReport(newFiche);
+  }
+  
+  $("#dlg").close();
+  editingId = null;
+};
+
+$("#csvBtn").onclick=()=>{const k=["module","title","site","owner","due","priority","status","date"];
+  const c=v=>'"'+String(v).replace(/^[=+@-]/,"'$&").replaceAll('"','""')+'"';
+  const txt="\uFEFF"+k.join(";")+"\r\n"+visible().map(r=>k.map(x=>c(r[x])).join(";")).join("\r\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/csv;charset=utf-8"}));a.download="PRODERMA_HSE.csv";a.click()};
+
+render();
+</script>
+</body>
+</html>
